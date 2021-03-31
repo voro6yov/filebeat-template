@@ -3,8 +3,22 @@ version: "3.8"
 services:
   app:
     container_name: fastapi_app
-    build: .
+    build: ./app
     ports:
-      - 8001:8000
+      - 8000:8000
     volumes:
-      - ./api:/api
+      # создаем volume, для хранения лог-файлов вне контейнера
+      - app-logs:/logs
+
+  log-shipper:
+    container_name: filebeat
+    image: docker.elastic.co/beats/filebeat:7.12.0
+    entrypoint: filebeat -e -strict.perms=false
+    user: root
+    volumes:
+      - ./filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro
+      # подключаем volume с лог-файлами в контейнер
+      - app-logs:/var/app/log
+
+volumes:
+  app-logs:

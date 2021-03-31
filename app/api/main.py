@@ -7,9 +7,9 @@ from pydantic import BaseModel
 from loguru import logger
 
 logger.add(
-    sys.stdout,
-    colorize=True,
-    format="<green>{level}</green> <level>{message}</level>",
+    "./logs/file.log",
+    format="{level} - {message}",
+    rotation="500 MB"
 )
 
 app = FastAPI()
