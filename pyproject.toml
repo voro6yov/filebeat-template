@@ -7,9 +7,18 @@ authors = ["Valentin Vorobyov <voro6yov.valentin@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 fastapi = "^0.63.0"
+uvicorn = "^0.13.4"
+python-multipart = "^0.0.5"
 
 [tool.poetry.dev-dependencies]
+pre-commit = "^2.11.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 72
+
+[tool.pylint.messages_control]
+disable = "C0330, C0326, E0401, C0114, C0115, C0116, R0903"
