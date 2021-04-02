@@ -8,7 +8,7 @@ from loguru import logger
 
 logger.add(
     "./logs/file.log",
-    format="{level} - {message}",
+    format="app-logs - {level} - {message}",
     rotation="500 MB"
 )
 
